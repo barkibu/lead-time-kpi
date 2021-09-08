@@ -1,5 +1,8 @@
 name: Lead Time For Release
 on:
+  release:
+    types: [published]
+
   workflow_dispatch: # To allow manual launch with specified version
     inputs:
       version:
