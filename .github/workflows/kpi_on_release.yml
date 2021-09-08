@@ -3,6 +3,11 @@ on:
   release:
     types: [published]
 
+  workflow_dispatch: # To allow manual launch with specified version
+    inputs:
+      version:
+        description: "Version for which to extract the KPIs"
+
 permissions:
   contents: write
   pull-requests: read
@@ -15,4 +20,8 @@ jobs:
       - name: Bind KPIs Notes to Release
         run: |
           docker pull bkbinfra/release_kpi_extractor
-          docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} -v $GITHUB_EVENT_PATH:/usr/app/event.json bkbinfra/release_kpi_extractor -d true
+          if ["${{ github.event.inputs.version }}" != ""]; then
+            docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} bkbinfra/release_kpi_extractor -d true -v ${{ github.event.inputs.version }}
+          else
+            docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} -v $GITHUB_EVENT_PATH:/usr/app/event.json bkbinfra/release_kpi_extractor -d true
+          fi
