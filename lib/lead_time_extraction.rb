@@ -12,5 +12,5 @@ deploy_event = Deploy.new(release)
 
 kpi_release_notes = "===== KPI events to add to the AirTable =====\n"
 kpi_release_notes << MarkdownEventsTable.new([deploy_event, *events]).render
-puts kpi_release_notes
-# release.add_to_body(kpi_release_notes)
+
+release.add_to_body(kpi_release_notes)
