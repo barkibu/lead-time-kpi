@@ -77,11 +77,11 @@ Make sure to tag your Pull requests with the appropriate tags. Currently support
 For features that are composed of various PullRequests you can combine their KPIs by adding to the body of the child PR:
 
 ```yaml
-Parent PR #{PrNumberOfTheParentPr}
+Parent PR: #{PrNumberOfTheParentPr}
 ```
 
 At the next release, the workflow will iterate over the commits, looking for those tags, extract, format and bind as notes to the release the estimate Lead Time KPIs. 
 
 You can then copy/paste  thoses into the KPI AirTable.
 
-You can explore the repo [barkibu/lead-time-kpi-demo](https://github.com/barkibu/lead-time-kpi-demo) and its pull requests as well as release note to get a grasp of how it's working.
+You can explore the repo [barkibu/lead-time-kpi](https://github.com/barkibu/lead-time-kpi) and its pull requests as well as release note to get a grasp of how it's working.
