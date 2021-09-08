@@ -72,11 +72,14 @@ jobs:
       - name: Bind KPIs Notes to Release
         run: |
           docker pull bkbinfra/release_kpi_extractor
-          if ["${{ github.event.inputs.version }}" != ""]; then
-            docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} bkbinfra/release_kpi_extractor -d true -v "${{ github.event.inputs.version }}" -r "${{ github.repository}}"
+          if ["$VERSION" != ""]; then
+            docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} bkbinfra/release_kpi_extractor -d true -v $VERSION -r $REPOSITORY
           else
             docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} -v $GITHUB_EVENT_PATH:/usr/app/event.json bkbinfra/release_kpi_extractor -d true
           fi
+        env:
+          REPOSITORY: ${{ github.repository }}
+          VERSION: ${{ github.event.inputs.version }}
 ```
 
 Make sure to tag your Pull requests with the appropriate tags. Currently supported ones are:
