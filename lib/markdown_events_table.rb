@@ -18,6 +18,6 @@ class MarkdownEventsTable
   end
 
   def content_for(event)
-    "| #{event.date} | #{event.name} | #{event.project} | #{event.value} | #{event.payload&.to_json} |"
+    "| #{event.date.strftime('%d/%m/%Y')} | #{event.name} | #{event.project} | #{event.value} | #{event.payload&.to_json} |"
   end
 end

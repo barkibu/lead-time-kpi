@@ -62,8 +62,9 @@ class PR
   end
 
   def parent_pr_number
-    if matches = object.body&.match(PARENT_PR_MATCHER)
-      matches[:parent_pr_number].to_i
-    end
+    matches = object.body&.match(PARENT_PR_MATCHER)
+    return unless matches
+
+    matches[:parent_pr_number].to_i
   end
 end

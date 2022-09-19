@@ -5,6 +5,7 @@ class Deploy < KpiEvent
 
   def initialize(release)
     @release = release
+    super()
   end
 
   def date

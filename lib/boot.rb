@@ -10,6 +10,7 @@ end
 
 Dotenv.load
 
+require_relative './configuration'
 require_relative './model'
 require_relative './github_client'
 require_relative './release_repository'

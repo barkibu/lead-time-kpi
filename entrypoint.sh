@@ -28,5 +28,5 @@ then
 fi
 [[ -n $debug ]] && echo "Detected Released version: $released_version"
 
-lib/lead_time_extraction.rb $repository $released_version $base_version
+ruby lib/lead_time_extraction.rb $repository $released_version $base_version
 

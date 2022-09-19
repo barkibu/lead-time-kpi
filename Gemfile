@@ -10,6 +10,9 @@ gem 'octokit', '~> 4.21'
 
 gem 'dotenv', '~> 2.7'
 
-gem 'rubocop', '~> 1.18', group: :development
+gem 'rubocop', '~> 1.32', group: :development
 
-gem "byebug", "~> 11.1", :group => :development
+gem 'byebug', '~> 11.1', group: :development
+
+gem 'rspec', '~> 3.11.0', group: :test
+gem 'stub_env', group: :test

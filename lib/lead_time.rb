@@ -8,6 +8,7 @@ class LeadTime < KpiEvent
     @type = type
     @value = value
     @pr_ids = pr_ids
+    super()
   end
 
   def bind_release(release)
