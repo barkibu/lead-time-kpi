@@ -2,6 +2,7 @@
 
 require 'dotenv'
 require 'octokit'
+require 'active_support/core_ext/string/inflections'
 
 begin
   require 'byebug'

@@ -25,6 +25,6 @@ class LeadTime < KpiEvent
   end
 
   def payload
-    { type: type, name: description, pr_ids: pr_ids }
+    { type: type.titleize, name: description, pr_ids: pr_ids }
   end
 end
