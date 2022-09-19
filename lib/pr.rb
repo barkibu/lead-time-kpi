@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PR
   PARENT_PR_MATCHER = /Parent PR:\s*\#(?<parent_pr_number>\d+)/.freeze
   attr_reader :object, :children

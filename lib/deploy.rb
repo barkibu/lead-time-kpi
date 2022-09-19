@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Deploy < KpiEvent
   attr_reader :release
 
@@ -13,7 +11,7 @@ class Deploy < KpiEvent
   end
 
   def name
-    'deployment_to_production'
+    'deployment_to_production'.freeze
   end
 
   def value

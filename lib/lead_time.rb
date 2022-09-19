@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class LeadTime < KpiEvent
   attr_reader :description, :type, :value, :pr_ids, :release
 
@@ -21,7 +19,7 @@ class LeadTime < KpiEvent
   end
 
   def name
-    'lead_time'
+    'lead_time'.freeze
   end
 
   def payload

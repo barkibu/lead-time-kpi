@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class GetLeadTimeEvents
   def self.for_version(repo, from_version, to_version)
     release_repository = ReleaseRepository.new repo
