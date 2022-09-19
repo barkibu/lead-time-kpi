@@ -16,7 +16,7 @@ class Label
   end
 
   def lead_time_type
-    base_change_type(string)
+    base_change_type(string) || default_change_type
   end
 
   def priority
