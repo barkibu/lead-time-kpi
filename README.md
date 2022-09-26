@@ -2,7 +2,7 @@
 
 We want to automate the extraction of some key KPIs for lead time and production deployment tracking.
 
-## Pseudo-code
+## Pseudo-code
 
 On each Release:
 
@@ -25,6 +25,24 @@ On each Release:
 $ bundle install
 $ GITHUB_ACCESS_TOKEN=ghp_yOuYaCcEsSToKeN ./lead_time_extraction.rb 'barkibu/kinship-connectedhealth-backend' 'v1.4.5'
 ```
+
+## Configuration
+
+Most of the defaults are configurable through environment variables in order to adapt this script to the specificity of any repository and custom tags/labels might be used:
+
+| Environment Variable Name                            | Description                                     | Default Value               |
+| ---------------------------------------------------- | ----------------------------------------------- | --------------------------- |
+| PROJECT_NAME                                         | Name of the project for the KPI to appear under | App                         |
+| CHANGE_TYPES                                         | Comma separated main labels for type of changes | defect,tech_debt,feature    |
+| CHANGE_TYPE_DEFAULT                                  | Default change type when no label detected      | feature                     |
+| CHANGE\_TYPE\_{*Uppercase Main Change Type*}\_ALIASES | Comma separated aliases                         | ---                         |
+| CHANGE_TYPES_IGNORED                                 | Comma separated labels to ignore for KPIs       | translation,ignore-for-kpis |
+| VERSION_REGEXP                                       | Regexp to detect versions from tags             | \d+.\d+.\d+                 |
+
+Default Aliases for the default change type defined:
+
+- CHANGE_TYPE_TECH_DEBT_ALIASES: "tech_debt,refactor"
+- CHANGE_TYPE_DEFECT_ALIASES: "defect,bug,fix,hotfix"
 
 ## Automate it
 
