@@ -24,7 +24,7 @@ class Label
   end
 
   def self.default
-    new(default_change_type)
+    new(Configuration.instance.default_change_type)
   end
 
   private
