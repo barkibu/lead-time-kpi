@@ -21,9 +21,9 @@ jobs:
       - name: Bind KPIs Notes to Release
         run: |
           if [ "$VERSION" != "" ]; then
-            docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} bkbinfra/release_kpi_extractor -d true -v $VERSION -r $REPOSITORY
+            docker run --rm -e PROJECT_NAME=KpiExtractor -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} bkbinfra/release_kpi_extractor -d true -v $VERSION -r $REPOSITORY
           else
-            docker run --rm -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} -v $GITHUB_EVENT_PATH:/usr/app/event.json bkbinfra/release_kpi_extractor -d true
+            docker run --rm -e PROJECT_NAME=KpiExtractor -e GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN}} -v $GITHUB_EVENT_PATH:/usr/app/event.json bkbinfra/release_kpi_extractor -d true
           fi
         env:
           REPOSITORY: ${{ github.repository }}
