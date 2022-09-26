@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PrRepository
   attr_reader :repo, :gc
 
@@ -20,6 +18,6 @@ class PrRepository
   end
 
   def parent_prs(commit)
-    gc.client.commit_pulls repo, commit.sha, accept: 'application/vnd.github.groot-preview+json'
+    gc.client.commit_pulls repo, commit.sha, accept: 'application/vnd.github.groot-preview+json'.freeze
   end
 end

@@ -1,10 +1,9 @@
-# frozen_string_literal: true
-
 class Deploy < KpiEvent
   attr_reader :release
 
   def initialize(release)
     @release = release
+    super()
   end
 
   def date
@@ -12,7 +11,7 @@ class Deploy < KpiEvent
   end
 
   def name
-    'deployment_to_production'
+    'deployment_to_production'.freeze
   end
 
   def value

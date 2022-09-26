@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class LeadTime < KpiEvent
   attr_reader :description, :type, :value, :pr_ids, :release
 
@@ -8,6 +6,7 @@ class LeadTime < KpiEvent
     @type = type
     @value = value
     @pr_ids = pr_ids
+    super()
   end
 
   def bind_release(release)
@@ -20,10 +19,10 @@ class LeadTime < KpiEvent
   end
 
   def name
-    'lead_time'
+    'lead_time'.freeze
   end
 
   def payload
-    { type: type, name: description, pr_ids: pr_ids }
+    { type: type.titleize, name: description, pr_ids: pr_ids }
   end
 end

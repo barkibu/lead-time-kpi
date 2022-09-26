@@ -1,4 +1,4 @@
-FROM ruby:slim
+FROM ruby:latest
 
 WORKDIR /usr/app
 
@@ -8,13 +8,7 @@ RUN apt-get update \
 
 COPY Gemfile Gemfile.lock ./
 
-RUN bundle config set --local without 'development' && \
-  bundle install
-
-COPY lib lib
-
-COPY entrypoint.sh .
-ENTRYPOINT ["./entrypoint.sh"]
+RUN bundle install
 
 ENV PROJECT_NAME "App"
 ENV CHANGE_TYPES "defect,tech_debt,feature"

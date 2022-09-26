@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class KpiEvent
+  attr_reader :configuration
+
+  def initialize
+    @configuration = Configuration.instance
+  end
+
   def date
     raise 'Implement the date of the event'
   end
@@ -14,11 +20,7 @@ class KpiEvent
   end
 
   def project
-    'App'
-  end
-
-  def date
-    raise 'Implement the date of the event'
+    configuration.project
   end
 
   def value

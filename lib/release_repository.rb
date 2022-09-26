@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class ReleaseRepository
-  VERSION_REGEX = /v\d+.\d+.\d+/.freeze
-  attr_reader :repo, :gc
+  extend Forwardable
+
+  attr_reader :repo, :gc, :configuration
+
+  def_delegators :configuration, :version_regexp
 
   def initialize(repo)
     @repo = repo
     @gc = GithubClient.new
+    @configuration = Configuration.instance
   end
 
   def update_release(*args)
@@ -45,7 +49,7 @@ class ReleaseRepository
   end
 
   def versions
-    @versions ||= tags.select { |t| t.name.match VERSION_REGEX }
+    @versions ||= tags.select { |t| t.name.match version_regexp }
   end
 
   def releases

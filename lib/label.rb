@@ -1,32 +1,35 @@
-# frozen_string_literal: true
-
 class Label
-  IGNORABLE = %w[translation ignore-for-kpis].freeze
-  LEAD_TIME_MAPPER = {
-    technical_debt: 'Tech Debt',
-    feature: 'Feature',
-    bug: 'Defect'
-  }.freeze
+  extend Forwardable
 
-  attr_reader :string
+  attr_reader :string, :configuration
+
+  def_delegators :configuration, :ignorable_change_types, :change_type_priority, :default_change_type,
+                 :change_type_aliases
 
   def initialize(string)
     @string = string
+    @configuration = Configuration.instance
   end
 
   def report?
-    !IGNORABLE.include? string
+    !ignorable_change_types.include? string
   end
 
   def lead_time_type
-    LEAD_TIME_MAPPER[string.to_sym] || 'Feature'
+    base_change_type(string) || default_change_type
   end
 
   def priority
-    LEAD_TIME_MAPPER.keys.find_index(lead_time_type)
+    change_type_priority(lead_time_type)
   end
 
   def self.default
-    new('Feature')
+    new(default_change_type)
+  end
+
+  private
+
+  def base_change_type(type)
+    change_type_aliases[type]
   end
 end
